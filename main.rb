@@ -2,17 +2,12 @@ dictionary = ["below","down","go","going","horn","how","howdy","it","i","low","o
 
 def substrings(str, substr)
   str_arr = str.downcase.split
-  matched_arr = []
+  substrings_hash = Hash.new(0)
   
-  substr.each do |word|
-    if str_arr.any? { |str| str.include?(word) }
-      matched_arr.push(word)
+  str_arr.each do |word|
+    substr.each do |sub|
+      substrings_hash[sub] += 1 if word.include?(sub)
     end
-  end
-  puts matched_arr
-  substrings_hash = matched_arr.reduce(Hash.new(0)) do |tally, word| 
-    tally[word] += 1
-    tally
   end
   substrings_hash
 end
