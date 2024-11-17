@@ -6,7 +6,9 @@ def substrings(str, substr)
   
   str_arr.each do |word|
     substr.each do |sub|
-      substrings_hash[sub] += 1 if word.include?(sub)
+      unless word.scan(sub).length == 0
+        substrings_hash[sub] += word.scan(sub).length
+      end
     end
   end
   substrings_hash
