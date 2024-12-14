@@ -1,18 +1,25 @@
-dictionary = ["below","down","go","going","horn","how","howdy","it","i","low","own","part","partner","sit"]
+class SubStrings
 
-def substrings(str, substr)
-  str_arr = str.downcase.split
-  substrings_hash = Hash.new(0)
-  
-  str_arr.each do |word|
-    substr.each do |sub|
-      unless word.scan(sub).length == 0
-        substrings_hash[sub] += word.scan(sub).length
+  def initialize(str)
+    @strings = str.downcase.split
+    @dictionary = ["below","down","go","going","horn","how","howdy","it","i","low","own","part","partner","sit"] 
+  end
+
+  def count
+    @appearance_counter = Hash.new(0)
+    
+    @strings.each do |word|
+      @dictionary.each do |sub|
+        unless word.scan(sub).length == 0
+          @appearance_counter[sub] += word.scan(sub).length
+        end
       end
     end
+    @appearance_counter
   end
-  substrings_hash
+
 end
 
 my_string = gets.chomp
-p substrings(my_string, dictionary)
+substrings = SubStrings.new(my_string)
+p substrings.count
